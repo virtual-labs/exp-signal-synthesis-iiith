@@ -1,79 +1,46 @@
 ### Procedure
 
-#### Impulse and Step Response
+#### Visualize and Listen
 
-This section requires selection of a system, and visualizing the impulse and step response of an LTI system by selecting "**Unit Impulse**" or "**Unit Step**". The objective of this section is to visualize the impulse and step responses of some LTI systems and identify the working of the system. Click on the "**Check**" button to visualize the plots. Steps to be done are as follows
+This section requires selection of the sampling frequency, entering the tone frequency and volume, and visualizing the tone of the specified parameters and also listening to it. **Please make sure to reduce the volume before playing the sounds!**. Click on the "**Listen**" button to visualize the plot, and listen to the tone. Steps to be done are as follows
 
-1. Select the signal (either "**Unit Impulse**" or "**Unit Step**") in the drop down provided
-2. Select the system in the drop down provided in the center box
-3. Click on Check button to visualize the plot in the figure
+1. Select the sampling frequency in the drop down provided.
+2. Enter the value for tone frequency.
+3. Enter the volume for the tone.
+3. Click on "**Listen**" button to visualize the plot in the figure and listen to the tone.
 
-The plot is obtained and it represents the impulse or step response of the selected system.
+Things to try
 
-#### LTI Systems
+1. If the sampling frequency is $X$, try listening to tone frequency of $\frac{X}{2}$, and note what you hear.
+2. If the sampling frequency is $X$, and tone frequency is $Y$, try listening to tone frequencies $Y$ and $X-Y$, and note what you hear.
 
-This section requires selection of a system, and visualizing the working of an LTI system by selecting an input signal. The objective of this section is to visualize how various LTI systems work on different input signals. Click on the "**Check**" button to visualize the plots. Steps to be done are as follows
+#### Envelope
 
-1. Select the signal in the drop down provided
-2. Select the system in the drop down provided in the center box
-3. Click on Check button to visualize the plot in the figure
+This section requires selection of the envelope, entering the tone frequency and volume, and visualizing the specified envelope and also listening to the tone, masked under that envelope. **Please make sure to reduce the volume before playing the sounds!**. Click on the "**Listen**" button to visualize the plot, and listen to the tone. Steps to be done are as follows
 
-The plot is obtained and it represents the output of the selected LTI system when the input to the LTI system is the selected signal.
+1. Select the envelope (either "**ADSR**", "**Rectangular**" or "**Exponential Decay**") in the drop down provided.
+2. Enter the value for tone frequency.
+3. Enter the volume for the tone.
+3. Click on "**Listen**" button to visualize the plot for the envelope in the figure and listen to the tone masked under that envelope.
 
-#### LTI System Application
+#### Harmonics
 
-This section requires selection of a signal, entering a variance value for the noise to be added to the signal to make it noisy and a window size to implement a Moving Average System. The objective of this section is to implement a Moving Average System, and use it for denoising a noisy version of the signal. Click on the "**Check**" button to visualize the plots. Steps to be done are as follows
+This section requires selection of the envelope, entering the fundamental frequency, the harmonic numbers and corresponding volumes, and visualizing the note and also listening to it. **Please make sure to reduce the volume before playing the sounds!**. Click on the "**Listen**" button to visualize the plot, and listen to the note. Steps to be done are as follows
 
-1. Select the signal in the drop down provided
-2. Enter the noise variance
-3. Enter the window size for the Moving Average System
-4. Click on Check button to visualize the plot in the figure
+1. Select the envelope (either "**ADSR**", "**Rectangular**" or "**Exponential Decay**") in the drop down provided.
+2. Enter the value for fundamental frequency.
+3. Enter the harmonic numbers to be combined.
+3. Enter the corresponding volumes for each harmonic number.
+3. Click on "**Listen**" button to visualize the plot for the note in the figure and listen to it.
 
-The input to the filter is given as
+#### Play
 
-$$
-x[n] = x_{o}[n] + \eta [n]
-$$
+This section requires selection of the envelope, entering the fundamental frequency, the harmonic numbers, corresponding volumes and the duration for the note, and listening to all the notes played one after the other in the specified order for specified durations. **Please make sure to reduce the volume before playing the sounds!**. Click on the "**Add Note**" button to add new fields to enter information in. Click on the "**Remove**" button in green, next to that note to remove that note. Click on the "**Listen**" button to listen to the notes, one after the other. Steps to be done are as follows
 
-here, $x_{o}[n]$ is the original signal, $\eta [n]$ is the noise signal, which is a Gaussian distribution ($\eta \sim \mathbb{N}(0,\sigma^{2})$) with mean 0, and variance $\sigma^{2}$, which is to be entered.
-
-The plot is obtained and it represents the output of the Moving Average System when the input to the LTI system is the selected signal with the added noise of specified noise variance.
-
-#### Quiz 1
-
-This section is to test the understanding, get feedback and run simulations over randomly generated inputs. The objective of this section is to test the understanding of the working of an LTI System. In the first block, we have an input signal, which is a Unit Impulse and the output of the unknown LTI system is given. In the next block, another input signal is given, to the **same** LTI system and the output is not provided. 
-
-The task here is to identify the scale parameter (by how much will the input be scaled) and the shift parameter (by how much will the input be shifted). Click on the "**Check**" button to visualize the plot for the values entered, which would be useful for feedback. Steps to be done are as follows
-
-1. Fill the parameters Frequency, Amplitude and Shift from Origin of the output signal
-
-The plot is obtained and it represents the output of the unknown LTI system when the input to the LTI system is the given signal. On the same plot, the output calculated using the parameters entered is also plotted for a comparison.
-
-The observartions tab at the bottom shows comments on whether the given parameters are correct and the output which is constructed from it, is the actual output of the given LTI System.
-
-#### Quiz 2
-
-This section is to test the understanding, get feedback and run simulations over randomly generated inputs. The objective of this section is to test the understanding of the working of an LTI System. In the first block, we have an input signal, which is a Unit Impulse and the output of the unknown LTI system is given. In the next block, another input signal (two scaled and shifted impulses) is given, to the **same** LTI system and the output is not provided.
-
-It can be easily observed that the output would contain four impulses which are shifted and scaled by various amounts.
-
-The task here is to identify the scale parameter (by how much will the input be scaled) and the shift parameter (by how much will the input be shifted) for all 4 impulses which would be obtained at the output. Click on the "**Check**" button to visualize the plot for the values entered, which would be useful for feedback. Steps to be done are as follows
-
-1. Fill the parameters Amplitude and Shift from Origin for all 4 impulses in the output signal
-
-The plot is obtained and it represents the output of the unknown LTI system when the input to the LTI system is the given signal. On the same plot, the output calculated using the parameters entered is also plotted for a comparison.
-
-The observartions tab at the bottom shows comments on whether the given parameters are correct and the output which is constructed from it, is the actual output of the given LTI System.
-
-#### Blocks Quiz
-
-This section is to test the understanding, get feedback and run simulations over randomly generated inputs. The objective of this section is to test the understanding of the working of an LTI System. In this section, we have an input signal given and the output of an unknown LTI system is also given. Further, we assume the unknown LTI system can be implemented using three LTI systems in cascade. The task here is to identify these three systems such that the final designed system matches with the earlier provided output.
-
-The task here is to identify the three LTI systems which when cascaded would convert the given input signal to the given output system. Scalar and Shift blocks require a number by which the signal would be scaled/shifted respectively. This is taken as an input in the text boxes right under the respective systems. Click on the "**Check**" button to visualize the plot for the values entered, which would be useful for feedback. Steps to be done are as follows
-
-1. Select the three systems
-2. If Scalar/Shift, in the text box below the corresponding LTI box, enter the value to be scaled/shifted by.
-
-The plot is obtained and it represents the output of the unknown LTI system when the input to the LTI system is the given signal. On the same plot, the output calculated using the chosen systems and parameters entered is also plotted for a comparison.
-
-The observartions tab at the bottom shows comments on whether the chosen LTI systems and given parameters are correct and the output which is constructed from it, is the actual output of the given LTI System.
+1. Click on "**Add Note**" button to add new notes
+2. Select the envelope (either "**ADSR**", "**Rectangular**" or "**Exponential Decay**") in the drop down provided.
+3. Enter the value for fundamental frequency for each note.
+4. Enter the harmonic numbers to be combined for each note.
+5. Enter the corresponding volumes for each harmonic number for each note.
+6. Enter the duration for each note
+6. Click on "**Listen**" button to listen to the notes one after the other.
