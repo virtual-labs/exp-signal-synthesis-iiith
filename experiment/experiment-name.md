@@ -1,1 +1,1 @@
-## Experiment name
+##  Signal/MUSIC synthesis 
