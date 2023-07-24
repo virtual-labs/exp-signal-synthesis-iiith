@@ -28,6 +28,20 @@ function openPart(evt, name) {
     evt.currentTarget.className += " active";
 }
 
+// ------------------------------------------ Screen Scale --------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Set the initial scale to zoom out the mobile screen
+    adjustViewportScale(1.5); // You can adjust the scale value as needed
+  });
+  
+  function adjustViewportScale(scaleValue) {
+    const viewportMetaTag = document.querySelector('meta[name="viewport"]');
+    if (viewportMetaTag) {
+      viewportMetaTag.setAttribute('content', `width=device-width, initial-scale=${scaleValue}`);
+    }
+  }
+
 // --------------------------------------- Add dynamic boxes --------------------------------------------------
 
 function add_field()
@@ -39,7 +53,7 @@ function add_field()
     numberofsignals += 1;
     uniquenumberofsignals += 1;
   document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
-  "<p id='input_num"+numberofsignals+"_wrapper'><input type='number' class='input_text' id='dyn_fundamental_"+numberofsignals+"' placeholder='Enter Fundamental Frequency'><input type='text' class='input_text' id='dyn_harmonics_"+numberofsignals+"' placeholder='Enter Harmonics'><input type='text' class='input_text' id='dyn_amps_"+numberofsignals+"' placeholder='Enter Amplitudes'><input type='number' class='input_text' id='dyn_duration_"+numberofsignals+"' placeholder='Enter Duration'><input type='button' value='Remove' onclick=remove_field('input_num"+numberofsignals+"');></p>";
+  "<p id='input_num"+numberofsignals+"_wrapper'><input type='number' class='input_text' id='dyn_fundamental_"+numberofsignals+"' placeholder='Enter Fundamental'><input type='text' class='input_text' id='dyn_harmonics_"+numberofsignals+"' placeholder='Enter Harmonics'><input type='text' class='input_text' id='dyn_amps_"+numberofsignals+"' placeholder='Enter Amplitudes'><input type='number' class='input_text' id='dyn_duration_"+numberofsignals+"' placeholder='Enter Duration'><input type='button' value='Remove' onclick=remove_field('input_num"+numberofsignals+"');></p>";
 }
 function remove_field(id1)
 {
@@ -209,7 +223,7 @@ function playToneInit(){
       
     Plotly.newPlot('figure1', data, layout, config);
       var update = {
-        width: 500,
+        width: 0.87*screen.width,
         height: 400
     };
     Plotly.relayout('figure1', update);
@@ -379,7 +393,7 @@ function playTone(){
       
     Plotly.newPlot('figure1', data, layout, config);
       var update = {
-        width: 500,
+        width: 0.87*screen.width,
         height: 400
     };
     Plotly.relayout('figure1', update);
@@ -557,13 +571,14 @@ function windowingInit(){
             }
         };
     }
-      
+
     Plotly.newPlot('figure3', data, layout, config);
-      var update = {
-        width: 500,
+    var update = {
+        width: 0.87*screen.width,
         height: 400
     };
     Plotly.relayout('figure3', update);
+    
 }
 
 function windowing(){
@@ -663,11 +678,12 @@ function windowing(){
     }
       
     Plotly.newPlot('figure3', data, layout, config);
-      var update = {
-        width: 500,
+    var update = {
+        width: 0.87*screen.width,
         height: 400
     };
     Plotly.relayout('figure3', update);
+    
 
     playSound(final,Fs);
 }
@@ -921,7 +937,7 @@ function harmonicsInit(){
       
     Plotly.newPlot('figure2', data, layout, config);
       var update = {
-        width: 500,
+        width: 0.87*screen.width,
         height: 400
     };
     Plotly.relayout('figure2', update);
@@ -1036,7 +1052,7 @@ function harmonics(){
       
     Plotly.newPlot('figure2', data, layout, config);
       var update = {
-        width: 500,
+        width: 0.87*screen.width,
         height: 400
     };
     Plotly.relayout('figure2', update);
