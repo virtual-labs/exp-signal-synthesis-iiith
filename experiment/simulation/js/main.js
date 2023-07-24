@@ -222,10 +222,22 @@ function playToneInit(){
     };
       
     Plotly.newPlot('figure1', data, layout, config);
-      var update = {
-        width: 0.87*screen.width,
-        height: 400
-    };
+    
+    if(screen.width < 400)
+    {
+        var update = {
+            width: 0.87*screen.width,
+            height: 400
+        };
+    }
+    else
+    {
+        var update = {
+            width: 500,
+            height: 400
+        };
+    }
+
     Plotly.relayout('figure1', update);
     
     /*
@@ -392,10 +404,22 @@ function playTone(){
     };
       
     Plotly.newPlot('figure1', data, layout, config);
-      var update = {
-        width: 0.87*screen.width,
-        height: 400
-    };
+    
+    if(screen.width < 400)
+    {
+        var update = {
+            width: 0.87*screen.width,
+            height: 400
+        };
+    }
+    else
+    {
+        var update = {
+            width: 500,
+            height: 400
+        };
+    }
+
     Plotly.relayout('figure1', update);
     playSound(arr,Fs)
 }
@@ -573,10 +597,22 @@ function windowingInit(){
     }
 
     Plotly.newPlot('figure3', data, layout, config);
-    var update = {
-        width: 0.87*screen.width,
-        height: 400
-    };
+    
+    if(screen.width < 400)
+    {
+        var update = {
+            width: 0.87*screen.width,
+            height: 400
+        };
+    }
+    else
+    {
+        var update = {
+            width: 500,
+            height: 400
+        };
+    }
+
     Plotly.relayout('figure3', update);
     
 }
@@ -678,10 +714,22 @@ function windowing(){
     }
       
     Plotly.newPlot('figure3', data, layout, config);
-    var update = {
-        width: 0.87*screen.width,
-        height: 400
-    };
+    
+    if(screen.width < 400)
+    {
+        var update = {
+            width: 0.87*screen.width,
+            height: 400
+        };
+    }
+    else
+    {
+        var update = {
+            width: 500,
+            height: 400
+        };
+    }
+
     Plotly.relayout('figure3', update);
     
 
@@ -936,10 +984,22 @@ function harmonicsInit(){
     };
       
     Plotly.newPlot('figure2', data, layout, config);
-      var update = {
-        width: 0.87*screen.width,
-        height: 400
-    };
+    console.log(screen.width)
+    if(screen.width < 400)
+    {
+        var update = {
+            width: 0.87*screen.width,
+            height: 400
+        };
+    }
+    else
+    {
+        var update = {
+            width: 500,
+            height: 400
+        };
+    }
+
     Plotly.relayout('figure2', update);
 }
 
@@ -1051,10 +1111,22 @@ function harmonics(){
     };
       
     Plotly.newPlot('figure2', data, layout, config);
-      var update = {
-        width: 0.87*screen.width,
-        height: 400
-    };
+    
+    if(screen.width < 400)
+    {
+        var update = {
+            width: 0.87*screen.width,
+            height: 400
+        };
+    }
+    else
+    {
+        var update = {
+            width: 500,
+            height: 400
+        };
+    }
+
     Plotly.relayout('figure2', update);
 }
 

@@ -1268,7 +1268,7 @@ section{
   margin-right: 20%;
   margin-top: 15%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 80%;
 }
 
 .box select {
@@ -1322,7 +1322,7 @@ section{
   position: relative;
   margin-left: 35%;
   margin-top: 10%;
-  width: 100%;
+  width: 80%;
   top: 0%;
   left: 0%;
   transform: translate(-50%, -50%);
@@ -1493,7 +1493,7 @@ section{
   margin-left: 30%;
   margin-right: 20%;
   margin-top: 15%;
-  width: 100%;
+  width: 80%;
   transform: translate(-50%, -50%);
 }
 
