@@ -1266,8 +1266,9 @@ section{
   position: relative;
   margin-left: 30%;
   margin-right: 20%;
-  margin-top: -10%;
+  margin-top: 15%;
   transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .box select {
@@ -1320,7 +1321,8 @@ section{
 .fill1 {
   position: relative;
   margin-left: 35%;
-  margin-top: 5%;
+  margin-top: 10%;
+  width: 100%;
   top: 0%;
   left: 0%;
   transform: translate(-50%, -50%);
@@ -1490,6 +1492,8 @@ section{
   position: relative;
   margin-left: 30%;
   margin-right: 20%;
+  margin-top: 15%;
+  width: 100%;
   transform: translate(-50%, -50%);
 }
 
@@ -1774,12 +1778,10 @@ section{
 /* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
-  float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
-  transition: 0.3s;
   font-size: 17px;
 }
 
@@ -1930,8 +1932,7 @@ section{
 
 #wrapper
 {
-  width:200%;
-  margin-left: -40%;
+  width:100%;
   margin-top: 10%;
   font-family:helvetica;
   text-align:center;
@@ -1962,4 +1963,12 @@ input[type="button"]
   border-radius:3px;
   background-color:green;
   font-size:16px;
+}
+
+/* ---------------------------------- Figure 1 -------------------------- */
+
+#figure3 {
+  width: 100%;
+  height: 0;
+  padding-bottom: 60%; /* Adjust the aspect ratio as needed */
 }

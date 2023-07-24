@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="./css/main.css">
 	<script src="https://unpkg.com/mathjs@11.2.1/lib/browser/math.js"></script>
 	<script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
@@ -53,28 +54,39 @@
 						</div>
 					</div>
 				</div>
-				<div class="imp-content">
-					<div class="column left">
-						<div class="box">
-							<select id="boxSec11">
-							  <option value="1">8000</option>
-							  <option value="2">16000</option>
-							  <option value="3">32000</option>
-							  <option value="4">44100</option>
-							  <option value="5">48000</option>
-							  <option value="6">88200</option>
-							  <option value="7">96000</option>
-							</select>
-						</div>
-						<div class="fill2"> Tone Frequency: &emsp; <input type=number id="fillSec12" value=500 step=0.5> </div>
-						<div class="fill2"> Volume: &emsp; <input type=number id="fillSec13" value=0.5 step=0.5> </div>
-						<button class="button1" id="buttonSec11" role="button" onClick="playTone()">Listen</button>
+
+				<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+			style="margin-top:-1.5%">
+			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+				<div class="box-question">
+
+					<div class="box">
+						<select id="boxSec11">
+						  <option value="1">8000</option>
+						  <option value="2">16000</option>
+						  <option value="3">32000</option>
+						  <option value="4">44100</option>
+						  <option value="5">48000</option>
+						  <option value="6">88200</option>
+						  <option value="7">96000</option>
+						</select>
 					</div>
-					<div class="column right">
+					<div class="fill2"> Tone Frequency: &emsp; <input type=number id="fillSec12" value=500 step=0.5> </div>
+					<div class="fill2"> Volume: &emsp; <input type=number id="fillSec13" value=0.5 step=0.5> </div>
+					<button class="button1" id="buttonSec11" role="button" onClick="playTone()">Listen</button>
+				</div>
+			</div>
+
+			<div class="column is-8-desktop is-4-tablet is-12-mobile">
+				<div class="box-question">
+					<div class="v-datalist-title">Observations</div>
+					<div id="observations1">
 						<div id='figure1'></div>
 					</div>
 				</div>
 			</div>
+		</div>
+
 		</section>
 	</div>
 
@@ -97,25 +109,36 @@
 						</div>
 					</div>
 				</div>
-				<div class="sys-content">
-					<div class="column left">
-						<div class="box">
-							<select id="boxSec21">
-							  <option value="1">ADSR</option>
-							  <option value="2">Rectangular</option>
-							  <option value="3">Exponential Decay</option>
-							</select>
-						</div>
-						<div class="fill1"> Fundamental Frequency: &emsp; <input type=number id="fillSec21" value=500 step=0.5> </div>
-						<div class="fill2"> Harmonics &emsp; <input type=text id="fillSec22" value=1,2,3,4,5 step=0.5> </div>
-						<div class="fill2"> Amplitudes &emsp; <input type=text id="fillSec23" value=0.1,0.1,0.1,0.1,0.1 step=0.5> </div>
-						<button class="button1" id="buttonSec21" role="button" onClick="harmonics()">Listen</button>
+
+				<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+			style="margin-top:-1.5%">
+			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+				<div class="box-question">
+
+					<div class="box">
+						<select id="boxSec21">
+						  <option value="1">ADSR</option>
+						  <option value="2">Rectangular</option>
+						  <option value="3">Exponential Decay</option>
+						</select>
 					</div>
-					<div class="column right">
+					<div class="fill1"> Fundamental Frequency &emsp; <input type=number id="fillSec21" value=500 step=0.5> </div>
+					<div class="fill2"> Harmonics &emsp; <input type=text id="fillSec22" value=1,2,3,4,5 step=0.5> </div>
+					<div class="fill2"> Amplitudes &emsp; <input type=text id="fillSec23" value=0.1,0.1,0.1,0.1,0.1 step=0.5> </div>
+					<button class="button1" id="buttonSec21" role="button" onClick="harmonics()">Listen</button>
+				</div>
+			</div>
+
+			<div class="column is-8-desktop is-4-tablet is-12-mobile">
+				<div class="box-question">
+					<div class="v-datalist-title">Observations</div>
+					<div id="observations2">
 						<div id='figure2'></div>
 					</div>
 				</div>
 			</div>
+		</div>
+
 		</section>
 	</div>
 
@@ -137,24 +160,35 @@
 						</div>
 					</div>
 				</div>
-				<div class="imp-content">
-					<div class="column left">
-						<div class="box">
-							<select id="boxSec41">
-							  <option value="1">ADSR</option>
-							  <option value="2">Rectangular</option>
-							  <option value="3">Exponential Decay</option>
-							</select>
-						</div>
-						<div class="fill2"> Tone Frequency: &emsp; <input type=number id="fillSec41" value=500 step=0.5> </div>
-						<div class="fill2"> Volume: &emsp; <input type=number id="fillSec42" value=0.5 step=0.5> </div>
-						<button class="button1" id="buttonSec41" role="button" onClick="windowing()">Listen</button>
+
+				<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+			style="margin-top:-1.5%">
+			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+				<div class="box-question">
+
+					<div class="box">
+						<select id="boxSec41">
+						  <option value="1">ADSR</option>
+						  <option value="2">Rectangular</option>
+						  <option value="3">Exponential Decay</option>
+						</select>
 					</div>
-					<div class="column right">
+					<div class="fill2"> Tone Frequency: &emsp; <input type=number id="fillSec41" value=500 step=0.5> </div>
+					<div class="fill2"> Volume: &emsp; <input type=number id="fillSec42" value=0.5 step=0.5> </div>
+					<button class="button1" id="buttonSec41" role="button" onClick="windowing()">Listen</button>
+				</div>
+			</div>
+
+			<div class="column is-8-desktop is-4-tablet is-12-mobile">
+				<div class="box-question">
+					<div class="v-datalist-title">Observations</div>
+					<div id="observations3">
 						<div id='figure3'></div>
 					</div>
 				</div>
 			</div>
+		</div>
+
 		</section>
 	</div>
 
@@ -180,25 +214,37 @@
 							</div>
 						</div>
 				</div>
-				<div class="mva-content">
-					<div class="column left">
-						<div class="box1">
-							<select id="boxSec31">
-							  <option value="1">ADSR</option>
-							  <option value="2">Rectangular</option>
-							  <option value="3">Exponential Decay</option>
-							</select>
-						</div>
-						<button class="button2" id="buttonSec31" role="button" onClick="add_field()">Add Note</button>
-						<button class="button2" id="buttonSec32" role="button" onClick="dynTones()">Listen</button>
+
+				<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+			style="margin-top:-1.5%">
+			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+				<div class="box-question">
+
+					<div class="box1">
+						<select id="boxSec31">
+						  <option value="1">ADSR</option>
+						  <option value="2">Rectangular</option>
+						  <option value="3">Exponential Decay</option>
+						</select>
 					</div>
-					<div class="column right">
+					<button class="button2" id="buttonSec31" role="button" onClick="add_field()">Add Note</button>
+					<button class="button2" id="buttonSec32" role="button" onClick="dynTones()">Listen</button>
+				</div>
+			</div>
+
+			<div class="column is-8-desktop is-4-tablet is-12-mobile">
+				<div class="box-question">
+					<div class="v-datalist-title">Notes</div>
+					<div id="observations3">
 						<div id="wrapper">
 							<div id="field_div"></div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		</div>
+
 		</section>
 	</div>
 
