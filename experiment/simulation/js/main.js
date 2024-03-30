@@ -26,6 +26,19 @@ function openPart(evt, name) {
     }
     document.getElementById(name).style.display = "block";
     evt.currentTarget.className += " active";
+
+    if(!name.localeCompare('PT'))
+    {
+        playToneInit();
+    }
+    else if(!name.localeCompare('WIN'))
+    {
+        windowingInit();
+    }
+    else if(!name.localeCompare('HAR'))
+    {
+        harmonicsInit();
+    }
 }
 
 // ------------------------------------------ Screen Scale --------------------------------------------------
@@ -1240,9 +1253,6 @@ function makeArr(startValue, stopValue, cardinality) {
 
 function startup()
 {
-    playToneInit();
-    windowingInit();
-    harmonicsInit();
     document.getElementById("default").click();
     document.getElementById("buttonSec31").click();
 }
