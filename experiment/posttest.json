@@ -2,11 +2,38 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "Why are envelops used in artificial synthesis of musical notes? "
+      "question": "Why are envelopes used in artificial synthesis of musical notes?",
+      "answers": {
+        "a": "To shape the amplitude dynamics of the note",
+        "b": "To alter the note's frequency content",
+        "c": "To adjust the note's rhythm",
+        "d": "To define its spatial characteristics"
+      },
+      "explanations": {
+        "a": "Envelopes control the attack, decay, sustain, and release phases, thus shaping the amplitude contour over time to mimic natural instrument behavior.",
+        "b": "Frequency content modification is managed separately and is not the primary function of envelopes.",
+        "c": "Rhythm is governed by timing mechanisms, not by envelope settings.",
+        "d": "Spatial characteristics are handled by different processing techniques."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
     },
     {
-      
-      "question": "What is alsiasing?"
+      "question": "What is aliasing?",
+      "answers": {
+        "a": "The process of smoothing out digital audio signals",
+        "b": "The effect where higher frequency components are misrepresented as lower frequencies due to insufficient sampling",
+        "c": "A technique to enhance the audio resolution",
+        "d": "The underlying algorithm for audio compression"
+      },
+      "explanations": {
+        "a": "Aliasing does not refer to a smoothing process; in fact, it creates unwanted distortions.",
+        "b": "Aliasing occurs when a signal is sampled at a rate below its Nyquist frequency, causing high frequencies to fold back into lower frequencies.",
+        "c": "Enhancing resolution is not aliasing but rather the opposite problem if sampling is inadequate.",
+        "d": "Audio compression algorithms involve different principles and are not directly related to aliasing."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }
