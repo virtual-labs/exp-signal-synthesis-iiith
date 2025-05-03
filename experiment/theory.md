@@ -8,7 +8,7 @@ A single frequency continuous-time sinusoid of frequency $f_0$ is given by
 
 $$ \text{x}(t) = a \sin(2 \pi f_0 t) $$
 
-Since a computer can only generate sampled signals, let us fix a sampling rate of $F_s$ samples per second. A digital recording device samples an audio signal at a certain sampling rate (given by the device specifications). In a similar manner, a digital playback device converts the sampled audio signal into a continuous-time signal following the specified sampling rate. The choice of sampling rate depends on the largest frequency content of the signal and is given by the Nyquist sampling criterion. Specifically, to sample a signal with highest frequency of f_0, the sampling rate should be chosen as $F_s >= 2 f_0$. This will allow for exact reconstruction of the signal without any loss of information. The sampled signal is given by 
+Since a computer can only generate sampled signals, let us fix a sampling rate of $F_s$ samples per second. A digital recording device samples an audio signal at a certain sampling rate (given by the device specifications). In a similar manner, a digital playback device converts the sampled audio signal into a continuous-time signal following the specified sampling rate. The choice of sampling rate depends on the largest frequency content of the signal and is given by the Nyquist sampling criterion. Specifically, to sample a signal with highest frequency of $f_0$, the sampling rate should be chosen as $F_s >= 2 f_0$. This will allow for exact reconstruction of the signal without any loss of information. The sampled signal is given by 
  $$ \text{x}[n] = a \sin(2 \pi f_0 n T_s) $$
 
 where $T_s = \frac{1}{F_s}$ is the sampling interval. A signal of only one frequency is called a pure tone signal. We will synthesise a single tone signal and listen to its sound for various choices of $F_s$ and $f_0$. 
@@ -22,19 +22,19 @@ $$ \text{x}[n] = a \sin(2 \pi f_0 n T_s) = a \sin(2 \pi (F_s-f_0) n T_s) $$
 Thus, a signal of frequency $f_0 = 6000$ Hz is not distinguishable from a signal of frequency $f_s-f_0 = 2000$ Hz. To avoid aliasing, given a sampling frequency of $F_s$, frequencies less than $\frac{F_s}{2}$ should only be synthesized. 
 
 ## Envelope ##
-
 Most audio signals from musical instrument will have a characteristic amplitude [envelope](https://en.wikipedia.org/wiki/Envelope_(music).) corresponding to gradual rise and fall of the volume at beginning and end of a note. Thus, while artificially synthesizing music signals, an envelope is applied. This makes the audio signal sound natural. One such example is the attack-decay-sustain-release (ADSR) envelope. An example figure is shown below: 
 
-<p align="center"><img src="ADSR.png" alt="drawing" width="400"/>
+<p align="center"><img src="images/ADSR.png" alt="drawing" width="400"/>
 
 Another example is the exponential decay envelop shown in figure below: 
 
-### Figure for exponential decay curve need to be added ### 
+<!-- ### Figure for exponential decay curve need to be added ###  -->
+<p align="center"><img src="images/expo.png" alt="drawing" width="400"/>
 
 
 ## Harmonics ##
 
-Signals with frequencies $2f_0$, $3f_0$, etc. are called [harmonics](https://en.wikipedia.org/wiki/Harmonic_series_(music).) of the frequency $f_0$, i.e., their frequency is an integer multiple of some basic frequency $f_0$. In a typical musical note, multiple harmonics are present in varying proportions. For example, the signal played by a key ## (A minor?) ## of a piano is plotted below: 
+Signals with frequencies $2f_0$, $3f_0$, etc. are called [harmonics](https://en.wikipedia.org/wiki/Harmonic_series_(music).) of the frequency $f_0$, i.e., their frequency is an integer multiple of some basic frequency $f_0$. In a typical musical note, multiple harmonics are present in varying proportions. For example, the signal played by a key (A minor) of a piano is plotted below: 
 
 The time series representation of a piano signal is given by
 
