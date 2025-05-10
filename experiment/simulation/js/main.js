@@ -1238,6 +1238,222 @@ function dynTones(){
     playSound(FINAL,Fs)
 }
 
+
+
+function add_field() {
+    if (uniquenumberofsignals >= 10) {
+        return null; 
+    }
+    numberofsignals += 1;
+    uniquenumberofsignals += 1;
+
+    const fieldDiv = document.getElementById("field_div");
+
+    const pWrapper = document.createElement('p');
+    pWrapper.id = 'input_num' + numberofsignals + '_wrapper';
+
+    const fundamentalInput = document.createElement('input');
+    fundamentalInput.type = 'number';
+    fundamentalInput.className = 'input_text';
+    fundamentalInput.id = 'dyn_fundamental_' + numberofsignals;
+    fundamentalInput.placeholder = 'Enter Fundamental';
+    pWrapper.appendChild(fundamentalInput);
+
+    const harmonicsInput = document.createElement('input');
+    harmonicsInput.type = 'text';
+    harmonicsInput.className = 'input_text';
+    harmonicsInput.id = 'dyn_harmonics_' + numberofsignals;
+    harmonicsInput.placeholder = 'Enter Harmonics';
+    pWrapper.appendChild(harmonicsInput);
+
+    const ampsInput = document.createElement('input');
+    ampsInput.type = 'text';
+    ampsInput.className = 'input_text';
+    ampsInput.id = 'dyn_amps_' + numberofsignals;
+    ampsInput.placeholder = 'Enter Amplitudes';
+    pWrapper.appendChild(ampsInput);
+
+    const durationInput = document.createElement('input');
+    durationInput.type = 'number';
+    durationInput.className = 'input_text';
+    durationInput.id = 'dyn_duration_' + numberofsignals;
+    durationInput.placeholder = 'Enter Duration';
+    pWrapper.appendChild(durationInput);
+
+    const removeButton = document.createElement('input');
+    removeButton.type = 'button';
+    removeButton.value = 'Remove';
+    removeButton.className = 'button-remove-note'; // Added class for styling
+    const currentSignalNumForRemove = numberofsignals; // Capture current value for closure
+    removeButton.onclick = function() { remove_field('input_num' + currentSignalNumForRemove); };
+    pWrapper.appendChild(removeButton);
+
+    fieldDiv.appendChild(pWrapper);
+
+    // Return the ids of the created inputs for easier access in loadNotesPreset
+    return {
+        fundamentalId: fundamentalInput.id,
+        harmonicsId: harmonicsInput.id,
+        ampsId: ampsInput.id,
+        durationId: durationInput.id
+    };
+}
+
+function remove_field(id1)
+{
+    uniquenumberofsignals -= 1;
+    const element = document.getElementById(id1+"_wrapper");
+    if (element) {
+        element.remove();
+    }
+}
+
+
+function addRandomNoteToPlayTab() {
+    const addedFieldIds = add_field(); 
+
+    if (!addedFieldIds) {
+        // This means add_field returned null, likely because max fields reached
+        // alert("Maximum number of notes reached. Cannot add a random note."); // Alert might be too noisy if called in a loop
+        return; // Exit if no field could be added
+    }
+
+    const minFreq = 50;
+    const maxFreq = 1000;
+    const randomFreq = Math.floor(Math.random() * (maxFreq - minFreq + 1)) + minFreq;
+
+    const numHarmonics = Math.floor(Math.random() * 3) + 1; 
+    let randomHarmonicsArr = [];
+    let randomAmplitudesArr = [];
+    for (let i = 0; i < numHarmonics; i++) {
+        randomHarmonicsArr.push(Math.floor(Math.random() * 5) + 1); // Harmonics between 1 and 5
+        randomAmplitudesArr.push((Math.random() * 0.6 + 0.1).toFixed(1)); // Amplitudes 0.1 to 0.7
+    }
+    const randomHarmonics = randomHarmonicsArr.join(',');
+    const randomAmplitudes = randomAmplitudesArr.join(',');
+
+
+    const minDuration = 0.2;
+    const maxDuration = 1.0;
+    const randomDuration = (Math.random() * (maxDuration - minDuration) + minDuration).toFixed(1);
+
+    const ffInput = document.getElementById(addedFieldIds.fundamentalId);
+    const hInput = document.getElementById(addedFieldIds.harmonicsId);
+    const ampInput = document.getElementById(addedFieldIds.ampsId);
+    const durInput = document.getElementById(addedFieldIds.durationId);
+
+    if (ffInput) ffInput.value = randomFreq;
+    if (hInput) hInput.value = randomHarmonics;
+    if (ampInput) ampInput.value = randomAmplitudes;
+    if (durInput) durInput.value = randomDuration;
+}
+
+const notePresets = {
+    "Example 1": [
+        { ff: 659.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 622.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 659.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 622.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 659.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 493.88, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 587.33, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 523.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 440.00, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 329.63, harmonics: "1", amplitudes: "0.7", duration: 0.3 }, 
+        { ff: 349.23, harmonics: "1", amplitudes: "0.7", duration: 0.3 }, 
+        { ff: 440.00, harmonics: "1", amplitudes: "0.7", duration: 0.3 }, 
+        { ff: 493.88, harmonics: "1", amplitudes: "0.7", duration: 0.3 }
+    ],
+    "Example 2": [
+        { ff: 16.35, harmonics: "15,20,30", amplitudes: "0.1,0.4,0.5", duration: 0.4 },
+        { ff: 16.35, harmonics: "15,20,30", amplitudes: "0.1,0.4,0.5", duration: 0.2 },
+        { ff: 18.35, harmonics: "15,20,30", amplitudes: "0.1,0.4,0.5", duration: 0.6 },
+        { ff: 16.35, harmonics: "15,20,30", amplitudes: "0.1,0.4,0.5", duration: 0.6 },
+        { ff: 24.50, harmonics: "15,20,30", amplitudes: "0.1,0.4,0.5", duration: 0.6 },
+        { ff: 21.83, harmonics: "15,20,30", amplitudes: "0.1,0.4,0.5", duration: 0.6 }
+    ],
+    "Example 3": [
+        { ff: 40, harmonics: "11,12", amplitudes: "0.5,0.5", duration: 0.5 },
+        { ff: 1, harmonics: "1", amplitudes: "0.1", duration: 0.2 },
+        { ff: 40, harmonics: "11,12", amplitudes: "0.5,0.5", duration: 0.5 },
+        { ff: 1, harmonics: "1", amplitudes: "0.1", duration: 1.5 },
+        { ff: 40, harmonics: "11,12", amplitudes: "0.5,0.5", duration: 0.5 },
+        { ff: 1, harmonics: "1", amplitudes: "0.1", duration: 0.2 },
+        { ff: 40, harmonics: "11,12", amplitudes: "0.5,0.5", duration: 0.5 },
+        { ff: 1, harmonics: "1", amplitudes: "0.1", duration: 1.5 }
+    ]
+};
+
+
+function loadNotesPreset(presetName) {
+    const fieldDiv = document.getElementById('field_div');
+    fieldDiv.innerHTML = ''; // Clear any existing notes
+
+    numberofsignals = 0;
+    uniquenumberofsignals = 0;
+
+    if (!presetName || !notePresets[presetName]) {
+        // If "Select an Example" is chosen or preset is invalid, fields are already cleared.
+        return;
+    }
+
+    const notes = notePresets[presetName];
+
+    notes.forEach((noteData) => {
+        const addedFieldIds = add_field(); 
+        if (!addedFieldIds) return; // Max fields reached or error
+
+        const ffInput = document.getElementById(addedFieldIds.fundamentalId);
+        const hInput = document.getElementById(addedFieldIds.harmonicsId);
+        const ampInput = document.getElementById(addedFieldIds.ampsId);
+        const durInput = document.getElementById(addedFieldIds.durationId);
+
+        if (ffInput) ffInput.value = noteData.ff;
+        else console.warn(`Input ${addedFieldIds.fundamentalId} not found for preset ${presetName}`);
+
+        if (hInput) hInput.value = noteData.harmonics;
+        else console.warn(`Input ${addedFieldIds.harmonicsId} not found for preset ${presetName}`);
+
+        if (ampInput) ampInput.value = noteData.amplitudes;
+        else console.warn(`Input ${addedFieldIds.ampsId} not found for preset ${presetName}`);
+
+        if (durInput) durInput.value = noteData.duration;
+        else console.warn(`Input ${addedFieldIds.durationId} not found for preset ${presetName}`);
+    });
+}
+
+function handleLoadPresetButtonClick() {
+    const presetSelector = document.getElementById('presetSelector');
+    const selectedPreset = presetSelector.value;
+
+    if (selectedPreset === "Random") {
+        loadRandomNotesSet();
+    } else if (selectedPreset) {
+        loadNotesPreset(selectedPreset);
+    } else {
+        const fieldDiv = document.getElementById('field_div');
+        fieldDiv.innerHTML = ''; 
+        numberofsignals = 0;
+        uniquenumberofsignals = 0;
+    }
+}
+
+
+function loadRandomNotesSet() {
+        const fieldDiv = document.getElementById('field_div');
+        fieldDiv.innerHTML = ''; 
+        numberofsignals = 0;
+        uniquenumberofsignals = 0;
+    
+        const minNotes = 3;
+        const maxNotes = 15;
+        const numberOfRandomNotes = Math.floor(Math.random() * (maxNotes - minNotes + 1)) + minNotes;
+    
+        for (let i = 0; i < numberOfRandomNotes; i++) {
+            if (uniquenumberofsignals >= 10) break; // Stop if max notes limit is reached
+            addRandomNoteToPlayTab(); // This function already adds a field and populates it
+        }
+    }
 /* ---------------------------- LinSpace -------------------------------------- */
 
 function makeArr(startValue, stopValue, cardinality) {

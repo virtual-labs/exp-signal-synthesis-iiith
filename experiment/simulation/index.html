@@ -53,7 +53,7 @@
 			</div>
 
 			<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
-			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+			<div class="column is-4-desktop is-4-tablet is-12-mobile">
 				<div class="box-question">
 					<div class="v-datalist-title">Sampling Frequency</div>
 					<div class="box">
@@ -106,7 +106,7 @@
 			</div>
 
 			<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
-			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+			<div class="column is-4-desktop is-4-tablet is-12-mobile">
 				<div class="box-question">
 					<div class="v-datalist-title">Envelope Type</div>
 					<div class="box">
@@ -156,7 +156,7 @@
 			</div>
 			
 			<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
-			<div class="column is-4-desktop is-8-tablet is-6-mobile">
+			<div class="column is-4-desktop is-4-tablet is-12-mobile">
 				<div class="box-question">
 					<div class="v-datalist-title">Envelope Type</div>
 					<div class="box">
@@ -415,21 +415,35 @@
 					</div>
 				</div>
 
+			
 				<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
-				<div class="column is-4-desktop is-8-tablet is-6-mobile">
-					<div class="box-question">
-					<div class="v-datalist-title">Envelope Type</div>
-						<div class="box">
-							<select id="boxSec31">
-							<option value="1">ADSR</option>
-							<option value="2">Rectangular</option>
-							<option value="3">Exponential Decay</option>
-							</select>
-						</div>
-						<button class="buttonTotal1" id="buttonSec31" role="button" onClick="add_field()">Add Note</button>
-						<button class="buttonTotal1" id="buttonSec32" role="button" onClick="dynTones()">Listen</button>
-					</div>
-				</div>
+					<div class="column is-4-desktop is-8-tablet is-6-mobile">
+						<div class="box-question">
+						<div class="v-datalist-title">Envelope Type</div>
+							<div class="box">
+								<select id="boxSec31">
+								<option value="1">ADSR</option>
+								<option value="2">Rectangular</option>
+								<option value="3">Exponential Decay</option>
+								</select>
+							</div>
+													<div class="v-datalist-title" style="margin-top: 15px;">Load Preset Example</div>
+                                                    <div class="box">
+                                                        <select id="presetSelector" onchange="loadNotesPreset(this.value)">
+                                                            <option value="">Select an Example</option>
+                                                            <option value="Example 1">Fur Elise (Example 1)</option>
+                                                            <option value="Example 2">Happy Birthday (Example 2)</option>
+                                                            <option value="Example 3">Old Ringtone (Example 3)</option>
+															<option value="Random">Random Notes</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="notes-controls-buttons">
+                                                        <button class="buttonTotal1" id="buttonLoadPreset" role="button" onclick="handleLoadPresetButtonClick()">Load Selected Preset</button>
+                                                        <button class="buttonTotal1" id="buttonSec31" role="button" onClick="add_field()">Add Note</button>
+                                                        <button class="buttonTotal1" id="buttonSec32" role="button" onClick="dynTones()">Listen</button>
+                                                    </div>
+                        </div>
+                    </div>
 
 				<div class="column is-8-desktop is-4-tablet is-12-mobile">
 					<div class="box-question">
