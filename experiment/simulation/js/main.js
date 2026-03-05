@@ -1,3 +1,8 @@
+// TODO: inform the user if no. of harmonics != no. of Amplitudes
+// TODO: Load Random notes when changed from dropdown
+// TODO: Mention that default sampling Frequency is <default value> in Envolope Harmonics and PLay Notes section in instructions
+// TODO: Scale exponential by the time as well like ASDR, instead of it being fixed decay, decay can be depdent on the duration for Play Notes section
+//
 // ------------------------------------------- Global Declarations ------------------------------------------
 
 var k;
@@ -11,6 +16,27 @@ var inValues;
 var numberofsignals = 0;
 var uniquenumberofsignals = 0;
 var always;
+
+function toggleAddNoteButton() {
+    const presetSelector = document.getElementById('presetSelector');
+    const addNoteButton = document.getElementById('buttonSec31');
+    
+    if (presetSelector.value === '') {
+        addNoteButton.style.display = 'inline-block';
+    } else {
+        addNoteButton.style.display = 'none';
+    }
+}
+
+function updateVolumeDisplay(value, displayId) {
+    var display = document.getElementById(displayId);
+    if (display) {
+        var percent = Math.round(parseFloat(value) * 100);
+        if (percent > 100) percent = 100;
+        if (percent < 0) percent = 0;
+        display.textContent = percent + '%';
+    }
+}
 
 // -------------------------------------------- Open Tabs ----------------------------------------------------
 
@@ -47,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Set the initial scale to zoom out the mobile screen
     adjustViewportScale(1.5); // You can adjust the scale value as needed
   });
-  
+
   function adjustViewportScale(scaleValue) {
     const viewportMetaTag = document.querySelector('meta[name="viewport"]');
     if (viewportMetaTag) {
@@ -101,7 +127,7 @@ function sineWaveAt(sampleNumber, tone, Fs) {
 function fourier(waveform){
     var N = waveform.length;
     var ft = [];
-    
+
     for(var k=0; k<N; k++)
     {
         var sum = math.complex(0,0);
@@ -127,7 +153,7 @@ function fourier(waveform){
 function invFourier(waveform){
     var N = waveform.length;
     var ft = [];
-    
+
     for(var k=0; k<N; k++)
     {
         var sum = math.complex(0,0);
@@ -192,7 +218,7 @@ function playToneInit(){
         arr[i] = sineWaveAt(i, tone, Fs) * volume
         xValues[i] = i / (Fs)
     }
-    
+
     var yValues = arr;
     always = arr;
     /*
@@ -212,47 +238,50 @@ function playToneInit(){
         }
         ampSpec.push(t);
     }*/
-    
+
     var trace1 = {
         x: xValues,
         y: yValues,
         type: 'scatter',
         mode: 'line'
     };
-      
+
     var data = [trace1];
 
     var config = {responsive: true}
     var layout = {
-        title: 'Sinusoidal Tone',
+        title: 'Sinusoidal Tone (0.01s window)',
         showlegend: false,
         xaxis: {
-            title: 'Time (Seconds)'
+            title: 'Time (Seconds)',
+            range: [0, 0.01]
         },
         yaxis: {
             title: 'Amplitude (A)'
         }
     };
-      
+
     Plotly.newPlot('figure1', data, layout, config);
-    
+
     if(screen.width < 400)
     {
         var update = {
             width: 0.87*screen.width,
-            height: 400
+            height: 400,
+            'xaxis.range': [0, 0.01]
         };
     }
     else
     {
         var update = {
             width: 500,
-            height: 400
+            height: 400,
+            'xaxis.range': [0, 0.01]
         };
     }
 
     Plotly.relayout('figure1', update);
-    
+
     /*
     var trace1 = {
         x: xValues,
@@ -267,11 +296,11 @@ function playToneInit(){
         yaxis: 'y2',
         type: 'scatter'
     };
-          
+
     var data = [trace1, trace2];
-    
+
     var config = {responsive: true}
-    
+
     var layout = {
         title: '',
         showlegend: false,
@@ -385,23 +414,27 @@ function playTone(){
 
     for (var i = 0; i < Fs * seconds; i++) {
         arr[i] = sineWaveAt(i, tone, Fs) * volume
-        xValues[i] = i*10 / (tone*Fs / (Math.PI * 2))
+        xValues[i] = i / (Fs)
     }
 
     var yValues = [];
+    var displaySamples = Math.min(Fs * 0.01, arr.length);
+    var displayXValues = [];
+    var displayYValues = [];
 
-    for(var i=0; i<Fs*seconds; i++)
+    for(var i=0; i<displaySamples; i++)
     {
-        yValues.push(always[i]*volume*2);
+        displayYValues.push(arr[i]);
+        displayXValues.push(xValues[i]);
     }
 
     var trace1 = {
-        x: xValues,
-        y: yValues,
+        x: displayXValues,
+        y: displayYValues,
         type: 'scatter',
         mode: 'line'
     };
-      
+
     var data = [trace1];
 
     var config = {responsive: true}
@@ -415,9 +448,9 @@ function playTone(){
             title: 'Amplitude (A)'
         }
     };
-      
+
     Plotly.newPlot('figure1', data, layout, config);
-    
+
     if(screen.width < 400)
     {
         var update = {
@@ -503,11 +536,12 @@ function adsr(signal)
 function exponential(signal)
 {
     var l = signal.length;
+    var decayRate = l / 8;
 
     var window = [];
     for(var i=0; i<l; i++)
     {
-        window.push(Math.exp(-i/10000));
+        window.push(Math.exp(-i/decayRate));
     }
 
     return window;
@@ -565,7 +599,7 @@ function windowingInit(){
         type: 'scatter',
         mode: 'line'
     };
-      
+
     var data = [trace1];
 
     var config = {responsive: true}
@@ -610,7 +644,7 @@ function windowingInit(){
     }
 
     Plotly.newPlot('figure3', data, layout, config);
-    
+
     if(screen.width < 400)
     {
         var update = {
@@ -627,7 +661,7 @@ function windowingInit(){
     }
 
     Plotly.relayout('figure3', update);
-    
+
 }
 
 function windowing(){
@@ -682,7 +716,7 @@ function windowing(){
         type: 'scatter',
         mode: 'line'
     };
-      
+
     var data = [trace1];
 
     var config = {responsive: true}
@@ -725,9 +759,9 @@ function windowing(){
             }
         };
     }
-      
+
     Plotly.newPlot('figure3', data, layout, config);
-    
+
     if(screen.width < 400)
     {
         var update = {
@@ -744,7 +778,7 @@ function windowing(){
     }
 
     Plotly.relayout('figure3', update);
-    
+
 
     playSound(final,Fs);
 }
@@ -788,7 +822,7 @@ function shortHarmonics(f0, ks, as, sel)
     }
 
     var arrr = [];
-    
+
     for(var i=0; i<Fs*seconds; i++){
         arrr[i] = arr[i]/maxA;
     }
@@ -839,6 +873,7 @@ function shortharmonics(f0, ks, as, sel)
         for(var j=0; j<n; j++)
         {
             tone = f0*ks[j];
+            // console.log(tone)
             arr[i] = arr[i] + sineWaveAt(i, tone, Fs) * as[j];
         }
     }
@@ -858,7 +893,7 @@ function shortharmonics(f0, ks, as, sel)
     }
 
     var arrr = [];
-    
+
     for(var i=0; i<Fs*seconds; i++){
         arrr[i] = arr[i]/maxA;
     }
@@ -906,7 +941,17 @@ function harmonicsInit(){
 
     var ks = separate(hars,1);
     var as = separate(amps,2);
+    
+    if (ks.length !== as.length) {
+        alert("Number of harmonics (" + ks.length + ") must match number of amplitudes (" + as.length + ")");
+        return;
+    }
+    
+    console.log("KS:")
+    console.log(ks)
 
+    console.log("AS:")
+    console.log(as)
     var n = ks.length;
     var volume = 0.2,
     seconds = 0.5;
@@ -923,6 +968,7 @@ function harmonicsInit(){
         for(var j=0; j<n; j++)
         {
             tone = f0*ks[j];
+            // console.log(tone)
             arr[i] = arr[i] + sineWaveAt(i, tone, Fs) * as[j];
         }
     }
@@ -942,7 +988,7 @@ function harmonicsInit(){
     }
 
     var arrr = [];
-    
+
     for(var i=0; i<Fs*seconds; i++){
         arrr[i] = arr[i]/maxA;
     }
@@ -972,8 +1018,8 @@ function harmonicsInit(){
         final.push(window[i]*arrr[i]);
     }
 
-    var yValues = shortHarmonics(f0, as, ks,sel);
-    var xValues = shortharmonics(f0,as,ks,sel);
+    var yValues = shortHarmonics(f0, ks, as, sel);
+    var xValues = shortharmonics(f0, ks, as, sel);
 
     var trace1 = {
         x: xValues,
@@ -981,23 +1027,24 @@ function harmonicsInit(){
         type: 'scatter',
         mode: 'line'
     };
-      
+
     var data = [trace1];
 
     var config = {responsive: true}
     var layout = {
-        title: 'Harmonics',
+        title: 'Sinusoidal Tone (0.01s window)',
         showlegend: false,
         xaxis: {
-            title: 'Time (Seconds)'
+            title: 'Time (Seconds)',
+            range: [0, 0.01]
         },
         yaxis: {
             title: 'Amplitude (A)'
         }
     };
-      
-    Plotly.newPlot('figure2', data, layout, config);
-    console.log(screen.width)
+
+    Plotly.newPlot('figure1', data, layout, config);
+
     if(screen.width < 400)
     {
         var update = {
@@ -1031,7 +1078,17 @@ function harmonics(){
 
     var ks = separate(hars,1);
     var as = separate(amps,2);
+    
+    if (ks.length !== as.length) {
+        alert("Number of harmonics (" + ks.length + ") must match number of amplitudes (" + as.length + ")");
+        return;
+    }
+    
+    console.log("KS:")
+     console.log(ks)
 
+    console.log("AS:")
+    console.log(as)
     var n = ks.length;
     var volume = 0.2,
     seconds = 0.5;
@@ -1067,7 +1124,7 @@ function harmonics(){
     }
 
     var arrr = [];
-    
+
     for(var i=0; i<Fs*seconds; i++){
         arrr[i] = arr[i]/maxA;
     }
@@ -1099,8 +1156,8 @@ function harmonics(){
 
     playSound(final,Fs);
 
-    var yValues = shortHarmonics(f0, as, ks,sel);
-    var xValues = shortharmonics(f0,as,ks,sel);
+    var yValues = shortHarmonics(f0, ks, as, sel);
+    var xValues = shortharmonics(f0, ks, as, sel);
 
     var trace1 = {
         x: xValues,
@@ -1108,7 +1165,7 @@ function harmonics(){
         type: 'scatter',
         mode: 'line'
     };
-      
+
     var data = [trace1];
 
     var config = {responsive: true}
@@ -1122,9 +1179,9 @@ function harmonics(){
             title: 'Amplitude (A)'
         }
     };
-      
+
     Plotly.newPlot('figure2', data, layout, config);
-    
+
     if(screen.width < 400)
     {
         var update = {
@@ -1202,7 +1259,7 @@ function dynTones(){
             }
 
             var arrr = [];
-    
+
             for(var j=0; j<Fs*seconds; j++){
                 arrr[j] = arr[j]/maxA;
             }
@@ -1234,7 +1291,7 @@ function dynTones(){
         }
         i += 1;
     }
-    
+
     playSound(FINAL,Fs)
 }
 
@@ -1242,7 +1299,7 @@ function dynTones(){
 
 function add_field() {
     if (uniquenumberofsignals >= 10) {
-        return null; 
+        return null;
     }
     numberofsignals += 1;
     uniquenumberofsignals += 1;
@@ -1310,7 +1367,7 @@ function remove_field(id1)
 
 
 function addRandomNoteToPlayTab() {
-    const addedFieldIds = add_field(); 
+    const addedFieldIds = add_field();
 
     if (!addedFieldIds) {
         // This means add_field returned null, likely because max fields reached
@@ -1322,7 +1379,7 @@ function addRandomNoteToPlayTab() {
     const maxFreq = 1000;
     const randomFreq = Math.floor(Math.random() * (maxFreq - minFreq + 1)) + minFreq;
 
-    const numHarmonics = Math.floor(Math.random() * 3) + 1; 
+    const numHarmonics = Math.floor(Math.random() * 3) + 1;
     let randomHarmonicsArr = [];
     let randomAmplitudesArr = [];
     for (let i = 0; i < numHarmonics; i++) {
@@ -1359,9 +1416,9 @@ const notePresets = {
         { ff: 587.33, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
         { ff: 523.25, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
         { ff: 440.00, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
-        { ff: 329.63, harmonics: "1", amplitudes: "0.7", duration: 0.3 }, 
-        { ff: 349.23, harmonics: "1", amplitudes: "0.7", duration: 0.3 }, 
-        { ff: 440.00, harmonics: "1", amplitudes: "0.7", duration: 0.3 }, 
+        { ff: 329.63, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 349.23, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
+        { ff: 440.00, harmonics: "1", amplitudes: "0.7", duration: 0.3 },
         { ff: 493.88, harmonics: "1", amplitudes: "0.7", duration: 0.3 }
     ],
     "Example 2": [
@@ -1386,6 +1443,11 @@ const notePresets = {
 
 
 function loadNotesPreset(presetName) {
+    if (presetName === "Random") {
+        loadRandomNotesSet();
+        return;
+    }
+    
     const fieldDiv = document.getElementById('field_div');
     fieldDiv.innerHTML = ''; // Clear any existing notes
 
@@ -1400,7 +1462,7 @@ function loadNotesPreset(presetName) {
     const notes = notePresets[presetName];
 
     notes.forEach((noteData) => {
-        const addedFieldIds = add_field(); 
+        const addedFieldIds = add_field();
         if (!addedFieldIds) return; // Max fields reached or error
 
         const ffInput = document.getElementById(addedFieldIds.fundamentalId);
@@ -1432,7 +1494,7 @@ function handleLoadPresetButtonClick() {
         loadNotesPreset(selectedPreset);
     } else {
         const fieldDiv = document.getElementById('field_div');
-        fieldDiv.innerHTML = ''; 
+        fieldDiv.innerHTML = '';
         numberofsignals = 0;
         uniquenumberofsignals = 0;
     }
@@ -1441,14 +1503,14 @@ function handleLoadPresetButtonClick() {
 
 function loadRandomNotesSet() {
         const fieldDiv = document.getElementById('field_div');
-        fieldDiv.innerHTML = ''; 
+        fieldDiv.innerHTML = '';
         numberofsignals = 0;
         uniquenumberofsignals = 0;
-    
+
         const minNotes = 3;
         const maxNotes = 15;
         const numberOfRandomNotes = Math.floor(Math.random() * (maxNotes - minNotes + 1)) + minNotes;
-    
+
         for (let i = 0; i < numberOfRandomNotes; i++) {
             if (uniquenumberofsignals >= 10) break; // Stop if max notes limit is reached
             addRandomNoteToPlayTab(); // This function already adds a field and populates it

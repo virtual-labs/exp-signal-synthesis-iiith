@@ -35,19 +35,13 @@
 				<div class="v-collapsible-instruction-container v-instruction-container">
 					<div class="v-collapsible is-size-5">Instructions</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-						<ol> 
+						<ol>
 							<li> Select the sampling frequency in the drop down provided. </li>
 							<li> Enter the value for tone frequency. </li>
 							<li> Enter the volume for the tone. </li>
 							<li> Click on Listen button to visualize the plot in the figure and listen to the tone. </li>
 						</ol>
 						<br>
-						<br>
-						<h3> If the sampling frequency is X, try listening to tone frequency of X/2. Why does this happen?
-						</h3>
-						<br>
-						<h3> If the sampling frequency is X, and tone frequency is Y, try listening to tone frequencies Y and X-Y. Why does this happen?
-						</h3>
 					</div>
 				</div>
 			</div>
@@ -68,7 +62,7 @@
 						</select>
 					</div>
 					<div class="fill1"> Tone Frequency: &emsp; <input type=number id="fillSec12" value=500 step=0.5> </div>
-					<div class="fill1"> Volume: &emsp; <input type=number id="fillSec13" value=0.5 step=0.5> </div>
+					<div class="fill1"> Volume: &emsp; <input type=number id="fillSec13" value=0.5 step=0.5 min=0 max=1 oninput="updateVolumeDisplay(this.value, 'volDisplay1')"> <span id="volDisplay1">50%</span></div>
 					<button class="buttonTotal" id="buttonSec11" role="button" onClick="playTone()">Listen</button>
 				</div>
 			</div>
@@ -94,8 +88,8 @@
 				<div class="v-collapsible-instruction-container v-instruction-container">
 					<div class="v-collapsible is-size-5">Instructions</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-						<ol> 
-							<li> Select the envelope (either ADSR, Rectangular or Exponential Decay) in the drop down provided. </li>
+						<ol>
+							<li> Select the envelope (either ADSR, Rectangular or Exponential Decay) in the drop down provided. (Default sampling frequency is 44100 Hz) </li>
 							<li> Enter the value for tone frequency. </li>
 							<li> Enter the volume for the tone. </li>
 							<li> Click on Listen button to visualize the plot for the envelope in the figure and listen to the tone masked under that envelope. </li>
@@ -143,8 +137,8 @@
 				<div class="v-collapsible-instruction-container v-instruction-container">
 					<div class="v-collapsible is-size-5">Instructions</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-						<ol> 
-							<li> Select the envelope (either ADSR, Rectangular or Exponential Decay) in the drop down provided. </li>
+						<ol>
+							<li> Select the envelope (either ADSR, Rectangular or Exponential Decay) in the drop down provided. (Default sampling frequency is 44100 Hz) </li>
 							<li> Enter the value for fundamental frequency. </li>
 							<li> Enter the harmonic numbers to be combined. </li>
 							<li> Enter the corresponding volumes for each harmonic number. </li>
@@ -154,7 +148,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
 			<div class="column is-4-desktop is-4-tablet is-12-mobile">
 				<div class="box-question">
@@ -198,7 +192,7 @@
 								<br>
 								<ul style="list-style: disc;">
 									<li>
-										Choose the window from the dropdown and listen to them. To add new notes, click on Add note button to fill the corresponding values in the new set of boxes on the right
+										Choose the window from the dropdown (Default sampling frequency is 44100 Hz) and listen to them. To add new notes, click on Add note button to fill the corresponding values in the new set of boxes on the right
 									</li>
 									<li>
 										To remove a note, click on the "Remove" button under that specific note
@@ -415,7 +409,7 @@
 					</div>
 				</div>
 
-			
+
 				<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
 					<div class="column is-4-desktop is-8-tablet is-6-mobile">
 						<div class="box-question">
@@ -429,8 +423,8 @@
 							</div>
 													<div class="v-datalist-title" style="margin-top: 15px;">Load Preset Example</div>
                                                     <div class="box">
-                                                        <select id="presetSelector" onchange="loadNotesPreset(this.value)">
-                                                            <option value="">Select an Example</option>
+                                                        <select id="presetSelector" onchange="loadNotesPreset(this.value); toggleAddNoteButton()">
+                                                            <option value="">Make your own</option>
                                                             <option value="Example 1">Fur Elise (Example 1)</option>
                                                             <option value="Example 2">Happy Birthday (Example 2)</option>
                                                             <option value="Example 3">Old Ringtone (Example 3)</option>
