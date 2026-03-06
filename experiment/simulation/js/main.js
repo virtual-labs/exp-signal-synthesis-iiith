@@ -785,7 +785,7 @@ function shortHarmonics(f0, ks, as, sel)
 {
     var n = ks.length;
     var volume = 0.2,
-    seconds = 0.1;
+    seconds = 0.5;
     var arr = [];
 
     for(var i=0; i<Fs*seconds; i++)
@@ -855,7 +855,7 @@ function shortharmonics(f0, ks, as, sel)
 {
     var n = ks.length;
     var volume = 0.2,
-    seconds = 0.1;
+    seconds = 0.5;
     var arr = [];
 
     for(var i=0; i<Fs*seconds; i++)
