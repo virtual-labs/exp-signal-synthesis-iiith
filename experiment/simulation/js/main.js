@@ -1,8 +1,4 @@
-// TODO: inform the user if no. of harmonics != no. of Amplitudes
-// TODO: Load Random notes when changed from dropdown
-// TODO: Mention that default sampling Frequency is <default value> in Envolope Harmonics and PLay Notes section in instructions
-// TODO: Scale exponential by the time as well like ASDR, instead of it being fixed decay, decay can be depdent on the duration for Play Notes section
-//
+// DONE: harmonics plot for 0.1 second because we listen to that and not some random values
 // ------------------------------------------- Global Declarations ------------------------------------------
 
 var k;
@@ -20,7 +16,7 @@ var always;
 function toggleAddNoteButton() {
     const presetSelector = document.getElementById('presetSelector');
     const addNoteButton = document.getElementById('buttonSec31');
-    
+
     if (presetSelector.value === '') {
         addNoteButton.style.display = 'inline-block';
     } else {
@@ -789,7 +785,7 @@ function shortHarmonics(f0, ks, as, sel)
 {
     var n = ks.length;
     var volume = 0.2,
-    seconds = 0.5*100/f0;
+    seconds = 0.1;
     var arr = [];
 
     for(var i=0; i<Fs*seconds; i++)
@@ -859,7 +855,7 @@ function shortharmonics(f0, ks, as, sel)
 {
     var n = ks.length;
     var volume = 0.2,
-    seconds = 0.5*100/f0;
+    seconds = 0.1;
     var arr = [];
 
     for(var i=0; i<Fs*seconds; i++)
@@ -941,12 +937,12 @@ function harmonicsInit(){
 
     var ks = separate(hars,1);
     var as = separate(amps,2);
-    
+
     if (ks.length !== as.length) {
         alert("Number of harmonics (" + ks.length + ") must match number of amplitudes (" + as.length + ")");
         return;
     }
-    
+
     console.log("KS:")
     console.log(ks)
 
@@ -954,7 +950,7 @@ function harmonicsInit(){
     console.log(as)
     var n = ks.length;
     var volume = 0.2,
-    seconds = 0.5;
+    seconds = 0.1;
     var arr = [];
 
     for(var i=0; i<Fs*seconds; i++)
@@ -975,7 +971,7 @@ function harmonicsInit(){
     var xValues = [];
 
     for (var i = 0; i < Fs * seconds; i++) {
-        xValues[i] = i / (Fs / (Math.PI * 2))
+        xValues[i] = i / (Fs)
     }
 
     var maxA = 0;
@@ -1078,12 +1074,12 @@ function harmonics(){
 
     var ks = separate(hars,1);
     var as = separate(amps,2);
-    
+
     if (ks.length !== as.length) {
         alert("Number of harmonics (" + ks.length + ") must match number of amplitudes (" + as.length + ")");
         return;
     }
-    
+
     console.log("KS:")
      console.log(ks)
 
@@ -1091,7 +1087,7 @@ function harmonics(){
     console.log(as)
     var n = ks.length;
     var volume = 0.2,
-    seconds = 0.5;
+    seconds = 0.1;
     var arr = [];
 
     for(var i=0; i<Fs*seconds; i++)
@@ -1111,7 +1107,7 @@ function harmonics(){
     var xValues = [];
 
     for (var i = 0; i < Fs * seconds; i++) {
-        xValues[i] = i / (Fs / (Math.PI * 2))
+        xValues[i] = i / (Fs)
     }
 
     var maxA = 0;
@@ -1447,7 +1443,7 @@ function loadNotesPreset(presetName) {
         loadRandomNotesSet();
         return;
     }
-    
+
     const fieldDiv = document.getElementById('field_div');
     fieldDiv.innerHTML = ''; // Clear any existing notes
 
