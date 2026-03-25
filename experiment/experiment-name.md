@@ -1,1 +1,2 @@
-##  Signal/MUSIC synthesis 
+## Music Signal synthesis
+
