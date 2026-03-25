@@ -2,38 +2,83 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What is the primary purpose of selecting an envelope (e.g., ADSR, Rectangular, Exponential Decay) in the simulator?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "To shape the amplitude profile of the tone",
+        "b": "To adjust the tone frequency",
+        "c": "To change the volume slider interface",
+        "d": "To configure the simulation layout"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Selecting an envelope adjusts how the tone's amplitude evolves over time. This is crucial for simulating realistic audio effects.",
+        "b": "Tone frequency is set separately and is not controlled by envelope selection.",
+        "c": "The volume is directly set via its own input, not through the envelope.",
+        "d": "The simulation layout is independent of the envelope choice."
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which envelope option in the simulator provides a rapid decay effect for the tone?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "ADSR",
+        "b": "Rectangular",
+        "c": "Exponential Decay",
+        "d": "Linear"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "ADSR controls attack, decay, sustain, and release but is not necessarily rapid.",
+        "b": "The rectangular envelope maintains a uniform amplitude without decay.",
+        "c": "Exponential Decay results in a quick decrease in amplitude, providing a rapid decay effect.",
+        "d": "A linear envelope is not an available option in this simulation."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
-    }
+    },
+    {
+      "question": "What is aliasing?",
+      "answers": {
+        "a": "The process of smoothing out digital audio signals",
+        "b": "The effect where higher frequency components are misrepresented as lower frequencies due to insufficient sampling",
+        "c": "A technique to enhance the audio resolution",
+        "d": "The underlying algorithm for audio compression"
+      },
+      "explanations": {
+        "a": "Aliasing does not refer to a smoothing process; in fact, it creates unwanted distortions.",
+        "b": "Aliasing occurs when a signal is sampled at a rate below its Nyquist frequency, causing high frequencies to fold back into lower frequencies.",
+        "c": "Enhancing resolution is not aliasing but rather the opposite problem if sampling is inadequate.",
+        "d": "Audio compression algorithms involve different principles and are not directly related to aliasing."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "A signal processing system uses sampling frequency of 8000 Hz. If the input signal to this system contains sinusoids with frequencies 2050 Hz and 6050 Hz, what frequencies will be perceived by the system?",
+      "answers": {
+        "a": "frequencies 2050 Hz and 6050 Hz",
+        "b": "frequencies 2050 Hz and 1950 Hz",
+        "c": "only frequency of 2050 Hz",
+        "d": "only frequency of 1950 Hz"
+      },
+      "explanations": {
+        "a": "Due to aliasing, frequency of 6050 Hz does not appear as it is",
+        "b": "Due to aliasing, frequency of 6050 Hz appears as 8000 - 6050 = 1950 Hz",
+        "c": "There are two distinct frequencies present",
+        "d": "There are two distinct frequencies present"
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "For a periodic signal, are all the harmonics are present in equal proportion?",
+      "answers": {
+        "a": "no",
+        "b": "yes",
+        "c": "very likely",
+        "d": "only for musical signals"
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    }    
   ]
 }
