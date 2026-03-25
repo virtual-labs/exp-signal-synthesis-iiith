@@ -36,21 +36,49 @@
       "difficulty": "beginner"
     },
     {
-      "question": "In the simulation, what happens when you click the 'Listen' button?",
+      "question": "What is aliasing?",
       "answers": {
-        "a": "It visualizes the tone plot and plays the generated tone.",
-        "b": "It stops the current simulation.",
-        "c": "It resets all configuration options to default.",
-        "d": "It opens the experiment guidelines."
+        "a": "The process of smoothing out digital audio signals",
+        "b": "The effect where higher frequency components are misrepresented as lower frequencies due to insufficient sampling",
+        "c": "A technique to enhance the audio resolution",
+        "d": "The underlying algorithm for audio compression"
       },
       "explanations": {
-        "a": "Clicking 'Listen' triggers the simulation to both plot the envelope of the tone and play the tone according to the selected parameters.",
-        "b": "Stopping the simulation is handled via different controls.",
-        "c": "Resetting parameters is not linked to the 'Listen' function.",
-        "d": "Experiment guidelines are available in the documentation, not through the 'Listen' button."
+        "a": "Aliasing does not refer to a smoothing process; in fact, it creates unwanted distortions.",
+        "b": "Aliasing occurs when a signal is sampled at a rate below its Nyquist frequency, causing high frequencies to fold back into lower frequencies.",
+        "c": "Enhancing resolution is not aliasing but rather the opposite problem if sampling is inadequate.",
+        "d": "Audio compression algorithms involve different principles and are not directly related to aliasing."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "A signal processing system uses sampling frequency of 8000 Hz. If the input signal to this system contains sinusoids with frequencies 2050 Hz and 6050 Hz, what frequencies will be perceived by the system?",
+      "answers": {
+        "a": "frequencies 2050 Hz and 6050 Hz",
+        "b": "frequencies 2050 Hz and 1950 Hz",
+        "c": "only frequency of 2050 Hz",
+        "d": "only frequency of 1950 Hz"
+      },
+      "explanations": {
+        "a": "Due to aliasing, frequency of 6050 Hz does not appear as it is",
+        "b": "Due to aliasing, frequency of 6050 Hz appears as 8000 - 6050 = 1950 Hz",
+        "c": "There are two distinct frequencies present",
+        "d": "There are two distinct frequencies present"
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "For a periodic signal, are all the harmonics are present in equal proportion?",
+      "answers": {
+        "a": "no",
+        "b": "yes",
+        "c": "very likely",
+        "d": "only for musical signals"
       },
       "correctAnswer": "a",
-      "difficulty": "beginner"
-    }
+      "difficulty": "intermediate"
+    }    
   ]
 }

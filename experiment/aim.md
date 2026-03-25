@@ -1,7 +1,10 @@
-## The aim of this experiment is to 
+## The aim of this experiment is to
+
 ***
-1. Synthesize and listen to pure tone signals 
 
-2. Study effect of aliasing 
+1. Synthesize and listen to sinusoidal signals
 
-3. Synthesize and listen to musical notes 
+2. Study effect of amplitude envelop on sounds
+
+3. Synthesize and listen to musical notes
+

@@ -34,6 +34,37 @@
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
-    }
+    },
+    {
+      "question": "In the simulation, what happens when you click the 'Listen' button?",
+      "answers": {
+        "a": "It visualizes the tone plot and plays the generated tone.",
+        "b": "It stops the current simulation.",
+        "c": "It resets all configuration options to default.",
+        "d": "It opens the experiment guidelines."
+      },
+      "explanations": {
+        "a": "Clicking 'Listen' triggers the simulation to both plot the envelope of the tone and play the tone according to the selected parameters.",
+        "b": "Stopping the simulation is handled via different controls.",
+        "c": "Resetting parameters is not linked to the 'Listen' function.",
+        "d": "Experiment guidelines are available in the documentation, not through the 'Listen' button."
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In the simulation, synthesizing audio signals for which of the folowing musical intruments is not feasible?",
+      "answers": {
+        "a": "piano",
+        "b": "trumpet",
+        "c": "drums",
+        "d": "both (a) and (b)"
+      },
+      "explanations": {
+        "c": "Drums are percussion instruments whose spectrum is not harmonically structured."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    } 
   ]
 }
