@@ -1,0 +1,506 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.max-width {
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+section .title {
+  position: relative;
+  text-align: center;
+  color: #000000;
+  font-weight: 500;
+  font-family: "Ubuntu", sans-serif;
+  margin: 2rem 0;
+}
+
+.imp {
+  display: flex;
+  color: #000000;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.buttonTotal,
+.buttonTotal1 {
+  display: block;
+  background-color: #98cb3b;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  padding: 12px 15px;
+  margin: 1rem auto;
+}
+
+.buttonTotal:hover,
+.buttonTotal1:hover {
+  background-color: #2c9ad1;
+  transform: scale(1.05);
+}
+
+.notes-controls-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%;
+}
+
+#buttonLoadPreset {
+  width: 85%;
+  padding: 15px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#wrapper {
+  width: 100%;
+  margin: 2rem auto;
+  font-family: "Ubuntu", sans-serif;
+  text-align: center;
+}
+
+#field_div {
+  width: 100%;
+  max-width: 100%;
+}
+
+#field_div p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+
+#field_div input[type="number"],
+#field_div input[type="text"] {
+  flex: 1 1 100px;
+  min-width: 80px;
+  margin: 4px;
+  padding: 8px;
+  height: auto;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#field_div input[type="button"].button-remove-note {
+  flex-basis: auto;
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.9em;
+  cursor: pointer;
+  margin: 4px;
+  height: auto;
+  transition: background-color 0.3s ease;
+}
+
+#field_div input[type="button"].button-remove-note:hover {
+  background-color: #c0392b;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 1.5rem auto;
+}
+
+.box select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0%;
+  border: 1px solid #98cb3b;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: "Ubuntu", sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+.fill1 {
+  width: 100%;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  text-align: center;
+  width: 100%;
+}
+
+.tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #98cb3b;
+  color: #176696;
+}
+
+.tabcontent {
+  display: none;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-top: none;
+  width: 100%;
+}
+
+#figure3 {
+  width: 100%;
+  height: 300px;
+  margin: 1rem auto;
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.visual-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+
+table,
+td {
+  border: 3px solid black;
+}
+
+th {
+  border: 3px solid black;
+  background-color: #aaa;
+  padding: 8px;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+}
+
+.observations-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.observations-section canvas {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+
+@media (min-width: 1206px) {
+  .max-width {
+    max-width: 1300px;
+    padding: 0 80px;
+  }
+
+  section .title {
+    font-size: 40px;
+    margin-top: 3rem;
+  }
+
+  .buttonTotal1 {
+    width: 70%;
+  }
+
+  .visual-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .controls-section {
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .observations-section {
+    flex: 1;
+    max-width: 55%;
+  }
+
+  .chart-container {
+    height: 400px;
+  }
+
+  #figure3 {
+    height: 400px;
+  }
+}
+
+@media (max-width: 1205px) and (min-width: 720px) {
+  .max-width {
+    max-width: 100%;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  section .title {
+    font-size: 32px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .buttonTotal,
+  .buttonTotal1 {
+    width: 80%;
+  }
+
+  /* overlap issue in table */
+  .visual-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: visible;
+    margin: 0 auto;
+  }
+
+  .controls-section,
+  .observations-section {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .box,
+  .fill1 {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  #figure3,
+  .chart-container {
+    width: 100%;
+    height: 300px;
+    margin: 1rem auto;
+  }
+
+  .observations-section canvas {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 250px !important;
+  }
+
+  .tab,
+  .tabcontent {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 719px) {
+  body,
+  html {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .max-width {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  section .title {
+    font-size: 24px;
+    margin: 1rem auto;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .buttonTotal,
+  .buttonTotal1 {
+    width: 90%;
+    margin: 1rem auto;
+    font-size: 1em;
+  }
+
+  .tab,
+  .tabcontent,
+  .controls-section,
+  .observations-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 5px;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  #field_div p {
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+  }
+
+  #field_div input[type="number"],
+  #field_div input[type="text"] {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .box {
+    width: 95%;
+    margin: 1rem auto;
+  }
+
+  .fill1 {
+    width: 95%;
+    margin: 1rem auto;
+  }
+
+  .tab button {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .imp,
+  #wrapper,
+  .notes-controls-buttons,
+  .tabcontent {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    max-width: none;
+    margin: 0.5rem auto;
+    box-sizing: border-box;
+  }
+
+  .observations-section canvas,
+  #figure3,
+  .chart-container {
+    width: 100% !important;
+    height: 250px !important;
+    min-height: 200px !important;
+  }
+
+  .observations-section {
+    padding: 0;
+    margin-top: 20px;
+  }
+}
+
